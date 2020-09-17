@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            //通过js的内置对象JSON来进行数组对象的深拷贝
+            function deepClone(obj) {
+            var _obj = JSON.stringify(obj);
+                objClone = JSON.parse(_obj);
+            return objClone;
+            }
+
+
+        function deepClone1(srcObj) {
+            var destObj = Array.isArray(srcObj) ? [] : {};
+
+            for(var key in srcObj) {
+                if(srcObj.hasOwnProperty(key)) {
+                    if(typeof srcObj[key] === 'object') {
+                        destObj[key] = deepClone(srcObj[key]);
+                    } else {
+                        destObj[key] = srcObj[key];
+                    }
+                }
+            }
+
+            return destObj;
+        }
+    </script>
+</body>
+</html>
